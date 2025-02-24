@@ -1,0 +1,26 @@
+.custom-card {
+    overflow-y: hidden;
+}
+
+.custom-card:hover {
+    overflow-y: auto;
+}
+.custom-card::-webkit-scrollbar {
+    width: 6px; 
+}
+
+.custom-card::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2); 
+    border-radius: 3px; 
+}
+
+.custom-card::-webkit-scrollbar-track {
+    background: transparent; 
+}
+// #background{
+//     background-image: url('/assets/logo.png');
+//     background-size: cover; /* מכסה את כל הרקע */
+//     background-repeat: no-repeat; /* לא לחזור על התמונה */
+//     background-position: center; /* ממרכז את התמונה */
+// }
+

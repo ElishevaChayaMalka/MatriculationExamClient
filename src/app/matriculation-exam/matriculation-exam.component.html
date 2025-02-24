@@ -1,0 +1,36 @@
+
+    <div id="spinner-container" *ngIf="isLoading" class="d-flex justify-content-center align-items-center">
+      <div class="spinner-border text-primary" role="status">
+        <span class="sr-only">טוען...</span>
+      </div>
+    </div>
+
+    <div id="background">
+
+  <h5 style="text-align: center; padding-top:5%;">שם התלמידה: {{fullName}} | תעודת זהות: {{id}} | יחידות במתמטיקה {{unitsMath}} | יחידות באנגלית {{unitsEnglish}} | מגמה: {{field}} </h5>
+
+<div
+  style="display: flex; flex-wrap: wrap;flex-direction: row-reverse;justify-content: space-around; direction: rtl;margin-right:6%;margin-left:6%;margin-top: 4%;">
+  <div *ngFor="let exam of dataExams">
+    <div class="card custom-card" style="width: 18rem; max-height: 220px ; height: 220px;margin-top: 4.5%;">
+      <div class="card-header">
+        <b> {{exam?.subjectName}} </b>
+        <span style="color: rgb(25, 190, 39);" [innerHTML]="exam | fixExam"></span>
+
+
+      </div>
+      <ul class="list-group list-group-flush" *ngFor="let e of exam.exams">
+
+        <li class="list-group-item" style="display: flex; justify-content: space-between; margin-right: -15%;">
+          {{ e?.examName }}
+          <span [ngStyle]="{ color: (e | missing) === 'חסר' ? 'red' : 'inherit' }">
+            {{ e | missing }}
+          </span>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+</div>
+</div>
