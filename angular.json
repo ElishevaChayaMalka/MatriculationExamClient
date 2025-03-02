@@ -72,7 +72,11 @@
               "buildTarget": "MatriculationExams:build:production"
             },
             "development": {
-              "buildTarget": "MatriculationExams:build:development"
+              "buildTarget": "MatriculationExams:build:development",
+              "options": {
+                "port": 4200,
+                "host": "0.0.0.0"
+              }
             }
           },
           "defaultConfiguration": "development"
