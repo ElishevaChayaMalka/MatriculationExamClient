@@ -16,7 +16,7 @@ export class getData {
     console.log((user.id)?.toString(),
       user.className,
       user.classNameNumber);
-    return this.http.post("https://localhost:44386/Login/Login", {
+    return this.http.post("https://matriculationexamserver.onrender.com/Login/Login", {
       id: (user.id)?.toString(),
       className: user.className,
       classNameNumber: user.classNameNumber
@@ -41,7 +41,7 @@ export class getData {
    const token = localStorage.getItem('token') || '';
     if (!token) return throwError('Token is empty');
     return this.http
-      .get(`https://localhost:44386/Login/Login/GetData?token=${token}`, {
+      .get(`https://matriculationexamserver.onrender.com/Login/Login/GetData?token=${token}`, {
         headers: new HttpHeaders({
           Authorization: `Bearer ${token}`,
         }),
