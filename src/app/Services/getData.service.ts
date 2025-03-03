@@ -13,25 +13,30 @@ export class getData {
   constructor(private http: HttpClient, private router: Router) { }
 // get user details name' id and token from server.
   getUserById(user: User): Observable<any> {
-    console.log((user.id)?.toString(),
-      user.className,
-      user.classNameNumber);
-    return this.http.post("https://matriculationexamserver.onrender.com/Login/Login", {
-      id: (user.id)?.toString(),
-      className: user.className,
-      classNameNumber: user.classNameNumber
-    }).pipe(
+  
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+    return this.http.post("https://matriculationexamserver.onrender.com/Login/Login", 
+      JSON.stringify({
+        id: (user.id)?.toString(),
+        className: user.className,
+        classNameNumber: user.classNameNumber
+      }), { headers }
+    ).pipe(
       map((response: any) => {
         localStorage.setItem('token', response.token);
         localStorage.setItem('name', response.data.name);
         localStorage.setItem('id', response.data.id);
         this.router.navigate(['/matriculation-exam']);
-       
+        console.log(response,'response');
+        
         return response;
       }),
       catchError(error => {
         alert("שגיאה, נסי שוב מאוחר יותר.");
         console.error('Error occurred:', error);
+        console.log(error,'error');
+
         return throwError(error);
       })
     );
@@ -40,6 +45,7 @@ export class getData {
   async getExamsByUser(){
    const token = localStorage.getItem('token') || '';
     if (!token) return throwError('Token is empty');
+    
     return this.http
       .get(`https://matriculationexamserver.onrender.com/Login/Login/GetData?token=${token}`, {
         headers: new HttpHeaders({
