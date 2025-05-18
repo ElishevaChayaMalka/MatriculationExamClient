@@ -7,13 +7,13 @@
 
     <div id="background">
 
-  <h5 style="text-align: center; padding-top:5%;">שם התלמידה: {{fullName}} | תעודת זהות: {{id}} | יחידות במתמטיקה {{unitsMath}} | יחידות באנגלית {{unitsEnglish}} | מגמה: {{field}} </h5>
+  <h5 style="text-align: center; padding-top:5%;">שם התלמידה: {{fullName}} | ת.ז: {{id}} | יחידות במתמטיקה {{unitsMath}} | יחידות באנגלית {{unitsEnglish}} | מגמה: {{field}} </h5>
 
 <div
   style="display: flex; flex-wrap: wrap;flex-direction: row-reverse;justify-content: space-around; direction: rtl;margin-right:6%;margin-left:6%;margin-top: 4%;">
   <div *ngFor="let exam of dataExams">
     <div class="card custom-card" style="width: 18rem; max-height: 220px ; height: 220px;margin-top: 4.5%;">
-      <div class="card-header">
+      <div class="card-header" style="background-color: rgb(220, 237, 222)!important">
         <b> {{exam?.subjectName}} </b>
         <span style="color: rgb(25, 190, 39);" [innerHTML]="exam | fixExam"></span>
 

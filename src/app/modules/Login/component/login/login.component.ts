@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-login',
   standalone: true,
   imports: [FormsModule,
-    ReactiveFormsModule, HttpClientModule,CommonModule],
+    ReactiveFormsModule, HttpClientModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit {
   error: string = "";
   logoPath: string = 'assets/logo.png';
   isLoading: boolean = false;
+  classes: any;
   constructor(private httpClient: HttpClient, private LoginServiceService: getData, private router: Router, private dataService: getData) { }
   ngOnInit(): void {
     this.logoPath = 'assets/logo.png';
@@ -53,22 +54,36 @@ export class LoginComponent implements OnInit {
     // this.isLoading = true;
     // const c = this.LoginServiceService.getUserById(new User(this.id, this.selectedClass?.name, this.selectedClass?.number)).subscribe();
     // this.isLoading = false;
-      this.isLoading = true; 
-      this.LoginServiceService.getUserById(new User(this.id, this.selectedClass?.name, this.selectedClass?.number))
-        .subscribe({
-          next: (response) => {
-            this.isLoading = false; // מפסיק את ה-spinner
-            // this.router.navigate(['/matriculation-exam']);
-          },
-          error: (err) => {
-            console.error(err);
-            this.isLoading = false; // מפסיק את ה-spinner במקרה של שגיאה
-            this.error = "שגיאה בקבלת הנתונים, אנא נסה שוב.";
-          }
-        });
-    
+    this.isLoading = true;
+    this.LoginServiceService.getUserById(new User(this.id, this.selectedClass?.name, this.selectedClass?.number))
+      .subscribe({
+        next: (response) => {
+          this.isLoading = false; // מפסיק את ה-spinner
+          // this.router.navigate(['/matriculation-exam']);
+        },
+        error: (err) => {
+          console.error(err);
+          this.isLoading = false; // מפסיק את ה-spinner במקרה של שגיאה
+          this.error = "שגיאה בקבלת הנתונים, אנא נסה שוב.";
+        }
+      });
+
   }
   classChoose() {
+
+  }
+  getClassesSheetsName() {
+    this.httpClient.get("https://matriculationexamserver.onrender.com/Matriculation/getClasses")
+      .subscribe({
+        next: (data) => {
+          console.log("Classes:", data);
+          this.classes = data; 
+        },
+        error: (error) => {
+          console.error("Error fetching classes:", error);
+        }
+      });
+
 
   }
 }
