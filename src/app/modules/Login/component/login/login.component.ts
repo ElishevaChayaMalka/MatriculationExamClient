@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   classes: any;
   constructor(private httpClient: HttpClient, private LoginServiceService: getData, private router: Router, private dataService: getData) { }
   ngOnInit(): void {
+    this.getClassesSheetsName();
     this.logoPath = 'assets/logo.png';
   }
 
@@ -77,7 +78,7 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (data) => {
           console.log("Classes:", data);
-          this.classes = data; 
+          this.classes = data;
         },
         error: (error) => {
           console.error("Error fetching classes:", error);
