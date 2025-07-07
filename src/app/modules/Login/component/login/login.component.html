@@ -1,15 +1,14 @@
+
+
 <div id="spinner-container" *ngIf="isLoading" class="d-flex justify-content-center align-items-center">
   <div class="spinner-border text-primary" role="status">
     <span class="sr-only">טוען...</span>
   </div>
 </div>
 <div>
-  <!-- <img src="/public/logo.jpg" alt=""> -->
 </div>
 <div id="loginForm" style="display: flex; flex-direction: column; margin:9% ; direction: rtl;">
-  <!-- <section class="vh-100"></section> -->
-  <!-- <img src="D:\examProject\MatriculationExams\src\assets\logo.png" alt="תיאור התמונה"> -->
-  <!-- <img [src]="logoPath" alt="Logo" /> -->
+
 
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -21,24 +20,11 @@
         <form>
           <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
             <p class="lead fw-normal mb-0 me-3"><b>התחברות - ברוכה הבאה!</b></p>
-            <!-- <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-floating mx-1">
-                <i class="fab fa-facebook-f"></i>
-              </button>
-
-              <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-floating mx-1">
-                <i class="fab fa-twitter"></i>
-              </button>
-
-              <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-floating mx-1">
-                <i class="fab fa-linkedin-in"></i>
-              </button> -->
           </div>
 
           <div class="divider d-flex align-items-center my-4">
-            <!-- <p class="text-center fw-bold mx-3 mb-0">Or</p> -->
           </div>
 
-          <!-- ID input -->
           <div class="mb-4">
             <label class="form-label" for="form3Example3">תעודת זהות</label>
             <input type="number" name="ID" id="form3Example3" class="form-control form-control-lg"
@@ -46,17 +32,15 @@
           </div>
 
 
-          <!-- Class select -->
           <div data-mdb-input-init class="form-outline mb-3">
             <label class="form-label" for="form3Example4">שם כיתה</label>
 
             <select class="form-select form-select-lg mb-3" name="classStage" aria-label="Large select example"
               [(ngModel)]="selectedClass">
               <option [ngValue]="null" selected>בחרי כיתה</option>
-              <option [ngValue]="{ name: 'י', number: '10' }">כיתה י'</option>
-              <option [ngValue]="{ name: 'יא', number: '11' }">כיתה יא'</option>
-              <option [ngValue]="{ name: 'יב', number: '12' }">כיתה יב'</option>
-              <option [ngValue]="{ name: 'בוגרות', number: '13' }">בוגרות</option>
+              <ng-container *ngFor="let class of classes">
+                <option [ngValue]="class">{{class}}</option>
+              </ng-container>
             </select>
           </div>
 

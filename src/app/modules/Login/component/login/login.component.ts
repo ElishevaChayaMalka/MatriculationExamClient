@@ -11,19 +11,20 @@ import { CommonModule } from '@angular/common';
   selector: 'app-login',
   standalone: true,
   imports: [FormsModule,
-    ReactiveFormsModule, HttpClientModule, CommonModule],
+    ReactiveFormsModule, HttpClientModule, CommonModule
+  ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.scss',
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   products: any;
   id: string = "";
   classStage: string = "";
-  selectedClass: { name: string; number: string } | null = null;
+  selectedClass: string | null = null;
   error: string = "";
   logoPath: string = 'assets/logo.png';
   isLoading: boolean = false;
-  classes: any;
+  classes: string[] = [];
   constructor(private httpClient: HttpClient, private LoginServiceService: getData, private router: Router, private dataService: getData) { }
   ngOnInit(): void {
     this.getClassesSheetsName();
@@ -42,25 +43,21 @@ export class LoginComponent implements OnInit {
       this.error = "תעודת זהות לא תקינה, נא להזין 9 ספרות.";
       return;
     }
-    if (!(isValidFormat && this.selectedClass?.name && this.selectedClass?.number)) {
+    if (!(isValidFormat && this.selectedClass)) {
       this.error = "יש להזין שם כיתה";
       return;
     }
-    else if (isValidFormat && this.selectedClass?.name && this.selectedClass?.number)
+    else if (isValidFormat && this.selectedClass)
       this.getData();
 
   }
   getData() {
-    // // this.router.navigate(['/matriculation-exam']);
-    // this.isLoading = true;
-    // const c = this.LoginServiceService.getUserById(new User(this.id, this.selectedClass?.name, this.selectedClass?.number)).subscribe();
-    // this.isLoading = false;
+
     this.isLoading = true;
-    this.LoginServiceService.getUserById(new User(this.id, this.selectedClass?.name, this.selectedClass?.number))
+    this.LoginServiceService.getUserById(new User(this.id, this.selectedClass ?? ''))
       .subscribe({
         next: (response) => {
-          this.isLoading = false; // מפסיק את ה-spinner
-          // this.router.navigate(['/matriculation-exam']);
+          this.isLoading = false; 
         },
         error: (err) => {
           console.error(err);
@@ -74,11 +71,12 @@ export class LoginComponent implements OnInit {
 
   }
   getClassesSheetsName() {
-    this.httpClient.get("https://matriculationexamserver.onrender.com/Matriculation/getClasses")
+
+      this.httpClient.get("https://matriculationexamserver.onrender.com/Matriculation/getClasses")
       .subscribe({
-        next: (data) => {
+        next: (data: any) => {
           console.log("Classes:", data);
-          this.classes = data;
+          this.classes = data.filter((c: String) => c.includes("כיתה"));
         },
         error: (error) => {
           console.error("Error fetching classes:", error);

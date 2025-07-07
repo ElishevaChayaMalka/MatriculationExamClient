@@ -17,6 +17,14 @@
 .custom-card::-webkit-scrollbar-track {
     background: transparent; 
 }
+#matriculation {
+  background-image: url('/backg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  margin: 0;
+}
 // #background{
 //     background-image: url('/assets/logo.png');
 //     background-size: cover; /* מכסה את כל הרקע */

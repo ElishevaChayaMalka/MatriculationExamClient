@@ -20,23 +20,18 @@ export class getData {
       JSON.stringify({
         id: (user.id)?.toString(),
         className: user.className,
-        classNameNumber: user.classNameNumber
       }), { headers }
     ).pipe(
       map((response: any) => {
         localStorage.setItem('token', response.token);
         localStorage.setItem('name', response.data.name);
         localStorage.setItem('id', response.data.id);
-        this.router.navigate(['/matriculation-exam']);
-        console.log(response,'response');
-        
+        this.router.navigate(['/matriculation-exam']);        
         return response;
       }),
       catchError(error => {
         alert("שגיאה, נסי שוב מאוחר יותר.");
         console.error('Error occurred:', error);
-        console.log(error,'error');
-
         return throwError(error);
       })
     );
