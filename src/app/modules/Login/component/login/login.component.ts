@@ -22,8 +22,8 @@ export class LoginComponent implements OnInit {
   classStage: string = "";
   selectedClass: string | null = null;
   error: string = "";
-  logoPath: string = 'assets/logo.png';
-  isLoading: boolean = false;
+  logoPath: string = 'assets/logo.jpg';
+  isLoading: boolean = true;
   classes: string[] = [];
   constructor(private httpClient: HttpClient, private LoginServiceService: getData, private router: Router, private dataService: getData) { }
   ngOnInit(): void {
@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
     this.LoginServiceService.getUserById(new User(this.id, this.selectedClass ?? ''))
       .subscribe({
         next: (response) => {
-          this.isLoading = false; 
+          this.isLoading = false;
         },
         error: (err) => {
           console.error(err);
@@ -72,11 +72,11 @@ export class LoginComponent implements OnInit {
   }
   getClassesSheetsName() {
 
-      this.httpClient.get("https://matriculationexamserver.onrender.com/Matriculation/getClasses")
+    this.httpClient.get("https://matriculationexamserver.onrender.com/Matriculation/getClasses")
       .subscribe({
         next: (data: any) => {
-          console.log("Classes:", data);
           this.classes = data.filter((c: String) => c.includes("כיתה"));
+          this.isLoading = false;
         },
         error: (error) => {
           console.error("Error fetching classes:", error);

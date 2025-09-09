@@ -1,29 +1,23 @@
+<div *ngIf="isLoading" class="loading-bar"></div>
 
-
-<div id="spinner-container" *ngIf="isLoading" class="d-flex justify-content-center align-items-center">
-  <div class="spinner-border text-primary" role="status">
-    <span class="sr-only">טוען...</span>
-  </div>
-</div>
-<div>
-</div>
-<div id="loginForm" style="display: flex; flex-direction: column; margin:9% ; direction: rtl;">
-
-
-  <div class="container-fluid h-custom">
+<div id="loginForm">
+  <div class="container-fluid h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-md-9 col-lg-6 col-xl-5">
-        <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp" class="img-fluid"
-          alt="Sample image">
+
+      <!-- תמונה -->
+      <div class="col-md-9 col-lg-6 col-xl-5 d-flex justify-content-center">
+        <img src="logo_.png" style="max-width: 70%;" class="img-fluid" alt="logo Emuna image">
       </div>
-      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-        <form>
-          <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
+
+      <!-- טופס -->
+      <div class="col-md-8 col-lg-6 col-xl-4 d-flex justify-content-center">
+        <form class="w-100">
+
+          <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start mb-3">
             <p class="lead fw-normal mb-0 me-3"><b>התחברות - ברוכה הבאה!</b></p>
           </div>
 
-          <div class="divider d-flex align-items-center my-4">
-          </div>
+          <div class="divider d-flex align-items-center my-4"></div>
 
           <div class="mb-4">
             <label class="form-label" for="form3Example3">תעודת זהות</label>
@@ -31,10 +25,12 @@
               placeholder="הכניסי תעודת זהות(9 ספרות)" [(ngModel)]="id" />
           </div>
 
+          <div class="spinner-border text-primary mb-3" *ngIf="isLoading" role="status">
+            <span class="sr-only">טוען...</span>
+          </div>
 
-          <div data-mdb-input-init class="form-outline mb-3">
+          <div class="form-outline mb-3">
             <label class="form-label" for="form3Example4">שם כיתה</label>
-
             <select class="form-select form-select-lg mb-3" name="classStage" aria-label="Large select example"
               [(ngModel)]="selectedClass">
               <option [ngValue]="null" selected>בחרי כיתה</option>
@@ -45,12 +41,17 @@
           </div>
 
           <label><b>{{error}}</b></label>
-          <div class="text-center text-lg-start mt-4 pt-2">
-            <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg"
-              style="padding-left: 2.5rem; padding-right: 2.5rem;" (click)="isValid()">התחברות</button>
+
+          <div class="text-center mt-4 pt-2">
+            <button type="button" class="my-gradient btn btn-lg px-4" (click)="isValid()"
+              style="font-weight: bold;font-size: 15px; ">
+              התחברות
+            </button>
           </div>
 
         </form>
       </div>
+
     </div>
   </div>
+</div>
