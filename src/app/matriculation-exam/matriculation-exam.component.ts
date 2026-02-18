@@ -52,7 +52,7 @@ export class MatriculationExamComponent implements OnInit {
 
   dataExam() {
     let currentSubject = '';
-    debugger
+  
     for (let i = 0; i < this.data.length; i++) {
       currentSubject = this.data[i].examSubject;
       if (currentSubject === 'מגמה') {

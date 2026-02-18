@@ -58,4 +58,41 @@
     margin: 0;
     padding: 1rem;
     direction: rtl;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    animation: changeBackground 35s infinite;
+    transition: background-image 1.5s ease-in-out;
+}
+
+.login-container {
+    background: rgba(255, 255, 255, 0.92);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 900px;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        max-width: 85%;
+    }
+    
+    #loginForm {
+        padding: 0.5rem;
+    }
+}
+
+@keyframes changeBackground {
+    0%, 14% { background-image: url('/backImages/IMG-20250519-WA0142.jpg'); }
+    14.28%, 28% { background-image: url('/backImages/IMG-20250519-WA0143.jpg'); }
+    28.57%, 42% { background-image: url('/backImages/IMG-20250519-WA0145.jpg'); }
+    42.85%, 56% { background-image: url('/backImages/IMG-20250519-WA0146.jpg'); }
+    57.14%, 70% { background-image: url('/backImages/IMG-20250519-WA0147.jpg'); }
+    71.42%, 84% { background-image: url('/backImages/IMG-20250519-WA0148.jpg'); }
+    85.71%, 100% { background-image: url('/backImages/IMG-20250519-WA0149.jpg'); }
 }

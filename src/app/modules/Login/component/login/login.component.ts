@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   isValid() {
-    debugger
+    
     const idRegex = /^\d{9}$/;
     const isValidFormat = idRegex.test(this.id);
     if (this.id === "") {

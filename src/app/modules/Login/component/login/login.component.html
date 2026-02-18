@@ -1,12 +1,13 @@
 <div *ngIf="isLoading" class="loading-bar"></div>
 
 <div id="loginForm">
-  <div class="container-fluid h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
+  <div class="login-container">
+    <div class="container-fluid h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
 
       <!-- תמונה -->
-      <div class="col-md-9 col-lg-6 col-xl-5 d-flex justify-content-center">
-        <img src="logo_.png" style="max-width: 70%;" class="img-fluid" alt="logo Emuna image">
+      <div class="col-md-9 col-lg-6 col-xl-5 d-flex justify-content-start" style="padding-left: 0;">
+        <img src="logo_.png" style="max-width: 90%; margin-left: -60px;" class="img-fluid" alt="logo Emuna image">
       </div>
 
       <!-- טופס -->
@@ -14,13 +15,14 @@
         <form class="w-100">
 
           <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start mb-3">
+            <img src="goal.png" alt="goal" style="width: 35px; height: 35px; margin-left: 3px;">
             <p class="lead fw-normal mb-0 me-3"><b>התחברות - ברוכה הבאה!</b></p>
           </div>
 
           <div class="divider d-flex align-items-center my-4"></div>
 
           <div class="mb-4">
-            <label class="form-label" for="form3Example3">תעודת זהות</label>
+            <label class="form-label" for="form3Example3" style="font-size: 18px;"> <strong>תעודת זהות</strong></label>
             <input type="number" name="ID" id="form3Example3" class="form-control form-control-lg"
               placeholder="הכניסי תעודת זהות(9 ספרות)" [(ngModel)]="id" />
           </div>
@@ -30,7 +32,7 @@
           </div>
 
           <div class="form-outline mb-3">
-            <label class="form-label" for="form3Example4">שם כיתה</label>
+            <label class="form-label" for="form3Example4" style="font-size: 18px;"><strong>כיתה</strong> </label>
             <select class="form-select form-select-lg mb-3" name="classStage" aria-label="Large select example"
               [(ngModel)]="selectedClass">
               <option [ngValue]="null" selected>בחרי כיתה</option>
@@ -54,4 +56,6 @@
 
     </div>
   </div>
+  </div>
+
 </div>

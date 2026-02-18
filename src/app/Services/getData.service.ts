@@ -15,7 +15,8 @@ export class getData {
   getUserById(user: User): Observable<any> {
   
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
+   user.className = user?.className?.trim();
+   
     return this.http.post("https://matriculationexamserver.onrender.com/Login/Login", 
       JSON.stringify({
         id: (user.id)?.toString(),
@@ -49,7 +50,6 @@ export class getData {
       })
       .pipe(
         map((response: any) => {
-          console.log('Response:', response);
           return response;
         }),
         catchError((error) => {
