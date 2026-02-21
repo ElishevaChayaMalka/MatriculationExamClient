@@ -6,6 +6,7 @@ import { getData } from '../../../../Services/getData.service';
 import { User } from '../../../../Types/User';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -72,7 +73,7 @@ export class LoginComponent implements OnInit {
   }
   getClassesSheetsName() {
 
-    this.httpClient.get("https://matriculationexamserver.onrender.com/Matriculation/getClasses")
+    this.httpClient.get(`${environment.apiUrl}/Matriculation/getClasses`)
       .subscribe({
         next: (data: any) => {
           this.classes = data.filter((c: String) => c.includes("כיתה"));
