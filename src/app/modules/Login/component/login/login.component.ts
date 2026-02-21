@@ -72,15 +72,36 @@ export class LoginComponent implements OnInit {
 
   }
   getClassesSheetsName() {
-
-    this.httpClient.get(`${environment.apiUrl}/Matriculation/getClasses`)
+    console.log('Fetching classes from:', `${environment.apiUrl}/Matriculation/getClasses`);
+    
+    this.httpClient.get(`${environment.apiUrl}/Matriculation/getClasses`, { 
+      observe: 'response' 
+    })
       .subscribe({
-        next: (data: any) => {
-          this.classes = data.filter((c: String) => c.includes("כיתה"));
+        next: (response: any) => {
+          console.log('Full response:', response);
+          console.log('Response status:', response.status);
+          console.log('Response body:', response.body);
+          console.log('Response headers:', response.headers);
+          
+          const data = response.body;
+          console.log(data,'dataa');
+          
+          if (data && Array.isArray(data)) {
+            this.classes = data?.filter((c: String) => c.includes("כיתה"));
+            console.log('Classes loaded:', this.classes);
+          } else {
+            this.classes = [];
+            console.error("Invalid data format received:", data);
+          }
           this.isLoading = false;
         },
         error: (error) => {
-          console.error("Error fetching classes:", error);
+          console.error("Error fetching classes - Full error:", error);
+          console.error("Error status:", error.status);
+          console.error("Error message:", error.message);
+          console.error("Error headers:", error.headers);
+          alert("שגיאה בטעינת רשימת הכיתות. אנא רענן את הדף.");
         }
       });
 
